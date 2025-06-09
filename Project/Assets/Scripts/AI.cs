@@ -149,7 +149,7 @@ public class AI : Player
 
         if (targetPlayer)
         {
-            Aim(targetPlayer.transform.position + (new Vector3(targetPlayer.rb.velocity.x, targetPlayer.rb.velocity.y, 0) / leadAmount));
+            Aim(targetPlayer.transform.position + (new Vector3(targetPlayer.rb.linearVelocity.x, targetPlayer.rb.linearVelocity.y, 0) / leadAmount));
 
             // If I am low hp, move away
             if (Health < maxHealth / 2f)
@@ -252,7 +252,7 @@ public class AI : Player
         int rand = Random.Range(0, 3);
         if (rand == 0)
         {
-            movementOffset = rb.velocity;
+            movementOffset = rb.linearVelocity;
         }
         else if (rand == 1)
         {
@@ -270,12 +270,12 @@ public class AI : Player
    
     void MoveTowards(Vector3 pos)
     {
-        rb.velocity = ((pos + movementOffset) - transform.position).normalized * (SkillManager.BASE_SPEED + (sm.speed.Value / 5f));
+        rb.linearVelocity = ((pos + movementOffset) - transform.position).normalized * (SkillManager.BASE_SPEED + (sm.speed.Value / 5f));
     }
 
     void MoveAwayFrom(Vector3 pos)
     {
-        rb.velocity = ((transform.position + movementOffset) - pos).normalized * (SkillManager.BASE_SPEED + (sm.speed.Value / 5f));
+        rb.linearVelocity = ((transform.position + movementOffset) - pos).normalized * (SkillManager.BASE_SPEED + (sm.speed.Value / 5f));
     }
 
     public override void Update()

@@ -30,7 +30,7 @@ public class User : Player
         base.Update();
 
         Vector2 inputs = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
         if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
         {
@@ -44,7 +44,7 @@ public class User : Player
 
         Aim(cam.ScreenToWorldPoint(Input.mousePosition));
 
-        rb.velocity = inputs * (SkillManager.BASE_SPEED + (sm.speed.Value / 5f));
+        rb.linearVelocity = inputs * (SkillManager.BASE_SPEED + (sm.speed.Value / 5f));
     }
 
     IEnumerator KilledText()
